@@ -27,8 +27,13 @@ public class TransferController {
         return new ResponseEntity<>(transactionService.getCash(), HttpStatus.OK);
     }
 
-    @PutMapping("/transfer")
+    @PutMapping("/deposit")
     public @ResponseBody ResponseEntity<TransactionDTO> depositCash(@RequestBody UserATMDTO user){
+        return new ResponseEntity<>(transactionService.depositCash(user), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/withdraw")
+    public @ResponseBody ResponseEntity<TransactionDTO> withdrawCash(@RequestBody UserATMDTO user){
         return new ResponseEntity<>(transactionService.depositCash(user), HttpStatus.CREATED);
     }
 

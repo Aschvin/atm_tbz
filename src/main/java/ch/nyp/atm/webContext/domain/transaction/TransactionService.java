@@ -42,4 +42,23 @@ public class TransactionService {
 
     }
 
+    public TransactionDTO withdrawCash(UserATMDTO user){
+        Double withdrawCash = user.getCash();
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        User newUser = service.findByUsername(userDetails.getUser().getUsername());
+        if (newUser.getCash()-withdrawCash >= 0){
+            newUser.setCash(newUser.getCash()-withdrawCash);
+            service.save(newUser);
+            Transaction transaction = new Transaction(newUser, newUser, withdrawCash, false, false, false, true);
+            return new TransactionDTO(repository.save(transaction).getId(), new UserATMDTO(repository.save(transaction).getUser1().getUsername(), repository.save(transaction).getUser1().getFirstName(),repository.save(transaction).getUser1().getLastName(), repository.save(transaction).getUser1().getCash()), new UserATMDTO(repository.save(transaction).getUser2().getUsername(), repository.save(transaction).getUser2().getFirstName(), repository.save(transaction).getUser2().getLastName(), repository.save(transaction).getUser2().getCash()), repository.save(transaction).getAmount(), repository.save(transaction).getSent(), repository.save(transaction).getReceived(), repository.save(transaction).getWithdrawed(), repository.save(transaction).getDeposit());
+        }else {
+            return null;
+        }
+
+
+
+
+    }
+
 }
