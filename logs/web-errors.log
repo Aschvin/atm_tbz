@@ -1350,3 +1350,4 @@ Caused by: java.lang.RuntimeException: Password too short
 	at ch.nyp.noa.config.validation.password.PasswordValidator.isValid(PasswordValidator.java:10)
 	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.validateSingleConstraint(ConstraintTree.java:171)
 	... 104 common frames omitted
+17-09-2019 15:13:02.909 [http-nio-8080-exec-10] WARN  web_error_logger.getAuthentication - Expired JWT was given: Bearer  eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiZXhwIjoxNTY4NzI1NDMxfQ.SA2q3kxoCG1qs_ggGW6f__iDExuyu6TQIfW3QC8KCiSNR0sM4mfxwf9cQJna7ANfWd3_d4uRI_WPwoVQHCQyfA
