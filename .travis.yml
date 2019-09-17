@@ -1,0 +1,15 @@
+language: java
+sudo: false
+install: true
+
+addons:
+  sonarcloud:
+    organization: 'tarkin25-1'
+    token:
+      secure: '3b2e4a42c017b00daa2a75ff5c9dfed9e0f9831e'
+
+jdk:
+  - openjdk11
+
+script:
+  - ./gradlew sonarqube
